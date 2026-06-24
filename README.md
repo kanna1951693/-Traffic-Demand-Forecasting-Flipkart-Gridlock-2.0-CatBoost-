@@ -48,7 +48,7 @@ graph TD
     E2 --> F[Final Training]
     F --> F1[Retrain on Full Dataset with Best Iterations + 100]
     F --> G[Inference & Output]
-    G --> G1[Predict on Test & Clip to [0, 1]]
+    G --> G1["Predict on Test & Clip to [0, 1]"]
     G1 --> G2[Save submission.csv -> Online Score: 90.73217]
 ```
 
@@ -66,8 +66,8 @@ Feature engineering is key to capturing the spatio-temporal dynamics of traffic:
   - Parsed `timestamp` (HH:MM) to `hour` and `minute`.
   - Computed `time_bin` = `hour * 60 + minute` (representing the minutes from the start of the day).
   - Built sine and cosine transforms:
-    $$\text{time\_sin} = \sin\left(\frac{2\pi \cdot \text{time\_bin}}{1440}\right)$$
-    $$\text{time\_cos} = \cos\left(\frac{2\pi \cdot \text{time\_bin}}{1440}\right)$$
+    $$\text{time}_{\text{sin}} = \sin\left(\frac{2\pi \cdot \text{time}_{\text{bin}}}{1440}\right)$$
+    $$\text{time}_{\text{cos}} = \cos\left(\frac{2\pi \cdot \text{time}_{\text{bin}}}{1440}\right)$$
     This helps the model understand that `23:59` is adjacent to `00:00`.
 - **Traffic Peak & Night Flags**:
   - `is_peak`: Set to `1` during office rush hours (7:00–9:59 AM, 5:00–7:59 PM), and `0` otherwise.
